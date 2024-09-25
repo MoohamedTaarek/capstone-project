@@ -1,0 +1,33 @@
+<!-- templates/products/product_list.html -->
+{% extends 'index.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Transaction List</h2>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">transaction_date</th>
+          <th scope="col">description</th>
+          <th scope="col">amount</th>
+          <th scope="col">user</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transaction in transactions %}
+          <tr>
+            <th scope="row">{{ transaction.id }}</th>
+            <td>{{ transaction.description }}</td>
+            <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.user }}</td>
+            <td>
+              <a href="{% url 'transaction-update' transaction.id %}" class="btn btn-primary btn-sm">Edit</a>
+              <a href="{% url 'transaction-delete' transaction.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
